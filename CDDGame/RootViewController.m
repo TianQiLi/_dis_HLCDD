@@ -151,12 +151,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-//I don't know why but adding this method solves the iphone exception problem...
-//by老逸 2013.5.14
--(BOOL)shouldAutorotate{
-    return NO;
-}
-
 - (void)dealloc {
     [super dealloc];
 }

@@ -22,11 +22,29 @@
     return scene;
 }
 
--(id) init 
+-(void) plistTest
+{
+    NSLog(@"MainViewControl running...");
+    NSLog(@"Now trying to print the plist");
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"PListDemo" ofType:@"plist"];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    NSLog(@"%@", data);
+    
+    NSMutableDictionary * dicOne = [data objectForKey:@"DicOne"];
+    NSNumber * IntOne = [dicOne objectForKey:@"IntOne"];
+    NSLog(@"get string:%@", IntOne);
+    NSLog(@"testing over.");
+    return;
+}
+
+-(id) init
 {
     self = [super init];
     if (self)
     {
+        [self plistTest];
+        
+        ///////////////////////////////////////
         database = [[CD2Database alloc]init];
         [database openDatabase];
         [database createTable];

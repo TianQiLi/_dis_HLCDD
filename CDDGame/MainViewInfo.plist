@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GobackPosi</key>
+	<dict>
+		<key>x</key>
+		<integer>-85</integer>
+		<key>y</key>
+		<integer>220</integer>
+	</dict>
+	<key>AboutPosi</key>
+	<dict>
+		<key>x</key>
+		<integer>240</integer>
+		<key>y</key>
+		<integer>160</integer>
+	</dict>
+	<key>HelpPosi</key>
+	<dict>
+		<key>x</key>
+		<string>240</string>
+		<key>y</key>
+		<integer>-30</integer>
+	</dict>
+	<key>MenuPosi</key>
+	<dict>
+		<key>x</key>
+		<real>290</real>
+		<key>y</key>
+		<integer>100</integer>
+	</dict>
+	<key>backGroudPosi</key>
+	<dict>
+		<key>x</key>
+		<integer>0</integer>
+		<key>y</key>
+		<integer>0</integer>
+	</dict>
+</dict>
+</plist>

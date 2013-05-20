@@ -132,7 +132,7 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-    //手势识别
+    
 	[[CCDirector sharedDirector] runWithScene: [GameMainViewContorller scene]];
 }
 

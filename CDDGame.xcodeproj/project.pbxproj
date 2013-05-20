@@ -82,7 +82,6 @@
 		18CBA85515C64BCD007F0E0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CBA85415C64BCD007F0E0E /* UIKit.framework */; };
 		18CBA85715C64BCD007F0E0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CBA85615C64BCD007F0E0E /* Foundation.framework */; };
 		18CBA85915C64BCD007F0E0E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CBA85815C64BCD007F0E0E /* CoreGraphics.framework */; };
-		18CBA85D15C64BCD007F0E0E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CBA85C15C64BCD007F0E0E /* Default.png */; };
 		18CBA85F15C64BCD007F0E0E /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CBA85E15C64BCD007F0E0E /* fps_images.png */; };
 		18CBA86115C64BCD007F0E0E /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CBA86015C64BCD007F0E0E /* Icon-72.png */; };
 		18CBA86315C64BCD007F0E0E /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CBA86215C64BCD007F0E0E /* Icon-Small-50.png */; };
@@ -197,6 +196,9 @@
 		1B2DC658160F553D004EC09D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B2DC657160F553D004EC09D /* CoreTelephony.framework */; };
 		1B2DC65A160F5558004EC09D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B2DC659160F5558004EC09D /* CoreLocation.framework */; };
 		1BF023071615D5F100891BE1 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF023011615D5F100891BE1 /* libYouMi.a */; };
+		57C4FAE6174A178C006C09BB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CBA85C15C64BCD007F0E0E /* Default.png */; };
+		57C4FAE8174A1843006C09BB /* PListDemo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57C4FAE7174A1843006C09BB /* PListDemo.plist */; };
+		57C4FAEA174A2224006C09BB /* MainViewInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57C4FAE9174A2224006C09BB /* MainViewInfo.plist */; };
 		57D1E8BF1744D7D3008A9969 /* text_1_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1E89C1744D7D3008A9969 /* text_1_1.png */; };
 		57D1E8C01744D7D3008A9969 /* text_1_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1E89D1744D7D3008A9969 /* text_1_2.png */; };
 		57D1E8C11744D7D3008A9969 /* text_1_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D1E89E1744D7D3008A9969 /* text_1_3.png */; };
@@ -648,6 +650,8 @@
 		1BF023041615D5F100891BE1 /* YouMiDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YouMiDelegateProtocol.h; path = "CDDGame/有米广告/YouMiDelegateProtocol.h"; sourceTree = "<group>"; };
 		1BF023051615D5F100891BE1 /* YouMiPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YouMiPush.h; path = "CDDGame/有米广告/YouMiPush.h"; sourceTree = "<group>"; };
 		1BF023061615D5F100891BE1 /* YouMiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YouMiView.h; path = "CDDGame/有米广告/YouMiView.h"; sourceTree = "<group>"; };
+		57C4FAE7174A1843006C09BB /* PListDemo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PListDemo.plist; sourceTree = "<group>"; };
+		57C4FAE9174A2224006C09BB /* MainViewInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MainViewInfo.plist; sourceTree = "<group>"; };
 		57D1E89C1744D7D3008A9969 /* text_1_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = text_1_1.png; path = Help/pic/text_1_1.png; sourceTree = "<group>"; };
 		57D1E89D1744D7D3008A9969 /* text_1_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = text_1_2.png; path = Help/pic/text_1_2.png; sourceTree = "<group>"; };
 		57D1E89E1744D7D3008A9969 /* text_1_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = text_1_3.png; path = Help/pic/text_1_3.png; sourceTree = "<group>"; };
@@ -897,7 +901,9 @@
 				18CBA86815C64BCD007F0E0E /* Icon.png */,
 				18CBA86A15C64BCD007F0E0E /* Icon@2x.png */,
 				18CBA86C15C64BCD007F0E0E /* Info.plist */,
+				57C4FAE7174A1843006C09BB /* PListDemo.plist */,
 				18CBA86D15C64BCD007F0E0E /* iTunesArtwork */,
+				57C4FAE9174A2224006C09BB /* MainViewInfo.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1476,7 +1482,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18CBA85D15C64BCD007F0E0E /* Default.png in Resources */,
 				18CBA85F15C64BCD007F0E0E /* fps_images.png in Resources */,
 				18CBA86115C64BCD007F0E0E /* Icon-72.png in Resources */,
 				18CBA86315C64BCD007F0E0E /* Icon-Small-50.png in Resources */,
@@ -1662,6 +1667,9 @@
 				57D1E8DF1744D7D3008A9969 /* u12_normal.png in Resources */,
 				57D1E8E01744D7D3008A9969 /* u14_normal.png in Resources */,
 				57D1E8E11744D7D3008A9969 /* u16_normal.png in Resources */,
+				57C4FAE6174A178C006C09BB /* Default.png in Resources */,
+				57C4FAE8174A1843006C09BB /* PListDemo.plist in Resources */,
+				57C4FAEA174A2224006C09BB /* MainViewInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1850,7 +1858,7 @@
 				GCC_PREFIX_HEADER = CDDGame/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = CDDGame/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1874,7 +1882,7 @@
 				GCC_PREFIX_HEADER = CDDGame/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = CDDGame/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
