@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Goback</key>
+	<dict>
+		<key>scale</key>
+		<real>0.5</real>
+		<key>x</key>
+		<integer>-80</integer>
+		<key>y</key>
+		<integer>210</integer>
+	</dict>
+	<key>About</key>
+	<dict>
+		<key>scale</key>
+		<integer>1</integer>
+		<key>x</key>
+		<integer>285</integer>
+		<key>y</key>
+		<integer>160</integer>
+	</dict>
+	<key>Help</key>
+	<dict>
+		<key>scale</key>
+		<real>0.4</real>
+		<key>x</key>
+		<integer>320</integer>
+		<key>y</key>
+		<integer>-30</integer>
+	</dict>
+	<key>Menu</key>
+	<dict>
+		<key>scale</key>
+		<real>0.6</real>
+		<key>x</key>
+		<integer>370</integer>
+		<key>y</key>
+		<integer>100</integer>
+	</dict>
+	<key>backGroud</key>
+	<dict>
+		<key>scale</key>
+		<integer>1</integer>
+		<key>x</key>
+		<integer>0</integer>
+		<key>y</key>
+		<integer>0</integer>
+	</dict>
+</dict>
+</plist>

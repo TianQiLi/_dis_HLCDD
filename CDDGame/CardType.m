@@ -13,25 +13,9 @@
 
 + (void) sortCards:(NSMutableArray *)cards//排序
 {
-//    NSMutableArray *cards = [NSMutableArray arrayWithArray:_cards];
     //排序
     int i,j,k;
-//    for (i = 0; i < [cards count]; i++) {
-//        if ([[cards objectAtIndex:i] cardNumber] == 1) {
-//            Card * _card = [[Card alloc]init];
-//            [_card setCardNumberAndType:([[cards objectAtIndex:i] cardNumber] + 13) cardType:[[cards objectAtIndex:i] cardType]];
-//            NSLog(@"number = %d,stype = %d",_card.cardNumber,_card.cardType);
-//            [cards replaceObjectAtIndex:i withObject:_card];
-//        }else if([[cards objectAtIndex:i] cardNumber] == 2){
-//            Card * _card = [[Card alloc]init];
-//            [_card setCardNumberAndType:([[cards objectAtIndex:i] cardNumber] + 14) cardType:[[cards objectAtIndex:i] cardType]];
-//            NSLog(@"number = %d,stype = %d",_card.cardNumber,_card.cardType);
-//            [cards replaceObjectAtIndex:i withObject:_card];
-//        }
-//    }
-//    for (int i = 0; i < 13; i++) {
-//        NSLog(@"number == %d,stype == %d",[[cards objectAtIndex:i] cardNumber],[[cards objectAtIndex:i] cardType]);
-//    }
+
     for (i = 0; i <[cards count]; i++) {
         for (k = j = i; j < [cards count]; j++) {
             if ([[cards objectAtIndex:j] compareLess:[cards objectAtIndex:k]]) {
@@ -39,19 +23,10 @@
             }
         }
         if (k != i) {
-//            Card * card_k = [cards objectAtIndex:k];
-//            Card * card_i = [cards objectAtIndex:i];
-//
-//            [cards replaceObjectAtIndex:i withObject:card_k];
-//            [cards replaceObjectAtIndex:k withObject:card_i];
             [cards exchangeObjectAtIndex:i withObjectAtIndex:k];
         }
     }
-//    for (int i = 0; i < [cards count]; i++) {
-//        NSLog(@"number ==== %d,stype ==== %d",[[cards objectAtIndex:i] cardNumber],[[cards objectAtIndex:i] cardType]);
-//    }
-//    return cards;
-//    return YES;
+
 }
 
 + (cardType) getCardType: (NSMutableArray*) selectedCard//判断所有牌的类型

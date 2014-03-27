@@ -14,6 +14,8 @@
 #import "GameMainViewContorller.h"
 #import "PlayGameView.h"
 #import "SimpleAudioEngine.h"
+
+
 @implementation AppDelegate
 
 @synthesize window;
@@ -42,19 +44,22 @@
 
 -(id)init
 {
-    //播放音乐
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"不能说的秘密.mp3" loop:0];
-    [SimpleAudioEngine sharedEngine].backgroundMusicVolume=0.3 ;
-
+ 
     return self;
 }
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
     
+//    [NSThread sleepForTimeInterval:3];
+    
+    sound=[[NSThread alloc] initWithTarget:self selector:@selector(PlayMusic) object:nil];
+    [sound start];
+    
     // Init the window
-	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	
-	// Try to use CADisplayLink director
+	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  
+
+    // Try to use CADisplayLink director
 	// if it fails (SDK < 3.1) use the default director
 	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
 		[CCDirector setDirectorType:kCCDirectorTypeDefault];
@@ -65,7 +70,9 @@
 	// Init the View Controller
 	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
 	viewController.wantsFullScreenLayout = YES;
-	
+  
+//    [sound release];
+    
 	//
 	// Create the EAGLView manually
 	//  1. Create a RGB565 format. Alternative: RGBA8
@@ -98,7 +105,7 @@
 #else
 	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
 #endif
-	
+	//kCCDeviceOrientationLandscapeLeft
 	[director setAnimationInterval:1.0/60];
 	[director setDisplayFPS:NO];
 	
@@ -113,21 +120,22 @@
     {
         //:addsubview 对ios6没用
         [window addSubview:viewController.view];
+        NSLog(@"linda1");
         
     }
     else
     {
         //ios6用这个方法
         [window setRootViewController:viewController];
+         NSLog(@"linda2");
     }
 	[window makeKeyAndVisible];
-	
+	 
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 
-	
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
@@ -136,7 +144,12 @@
 	[[CCDirector sharedDirector] runWithScene: [GameMainViewContorller scene]];
 }
 
-
+-(void)PlayMusic
+{
+    //播放音乐
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"不能说的秘密.mp3" loop:0];
+    [SimpleAudioEngine sharedEngine].backgroundMusicVolume=0.3 ;
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] pause];
 }
@@ -173,7 +186,28 @@
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
 
+//- (BOOL)shouldAutorotate
+//{
+//    return YES;
+//}
+//
+//- (NSUInteger)supportedInterfaceOrientations
+//{
+//    return UIInterfaceOrientationMaskLandscape;//UIInterfaceOrientationMaskLandscape
+//}
+//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+//{
+//    return UIInterfaceOrientationMaskLandscape;//UIInterfaceOrientationLandscapeRight
+//}
+//- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+//{
+//    
+//    return UIInterfaceOrientationMaskLandscape;
+//}
+
+
 - (void)dealloc {
+    [sound release];
 	[[CCDirector sharedDirector] end];
 	[window release];
 	[super dealloc];

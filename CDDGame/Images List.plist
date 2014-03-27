@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Type4</key>
+	<array>
+		<string>MainBackground.png</string>
+		<string>gamebackground.png</string>
+		<string>gameMenu.png</string>
+		<string>head_bg.png</string>
+		<string>gamesetbg.png</string>
+		<string>setaudiobg.png</string>
+		<string>regularBg.png</string>
+		<string>rankbg.png</string>
+		<string>aboutWe.png</string>
+		<string>scoreBg.png</string>
+		<string>gamaOverAndScoreBg.png</string>
+	</array>
+	<key>Type5</key>
+	<array>
+		<string>MainBackgroundNew.png</string>
+		<string>gamebackgroundNew.png</string>
+		<string>gameMenuNew.png</string>
+		<string>head_bgNew.png</string>
+		<string>gamesetbgNew.png</string>
+		<string>setaudiobgNew.png</string>
+		<string>regularBgNew.png</string>
+		<string>rankbgNew.png</string>
+		<string>aboutWeNew.png</string>
+		<string>scoreBgNew.png</string>
+		<string>gamaOverAndScoreBgNew.png</string>
+	</array>
+</dict>
+</plist>

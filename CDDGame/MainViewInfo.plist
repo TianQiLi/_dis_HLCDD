@@ -2,36 +2,46 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>GobackPosi</key>
+	<key>Goback</key>
 	<dict>
+		<key>scale</key>
+		<real>0.5</real>
 		<key>x</key>
 		<integer>-85</integer>
 		<key>y</key>
 		<integer>220</integer>
 	</dict>
-	<key>AboutPosi</key>
+	<key>About</key>
 	<dict>
+		<key>scale</key>
+		<integer>1</integer>
 		<key>x</key>
 		<integer>240</integer>
 		<key>y</key>
 		<integer>160</integer>
 	</dict>
-	<key>HelpPosi</key>
+	<key>Help</key>
 	<dict>
+		<key>scale</key>
+		<real>0.4</real>
 		<key>x</key>
-		<string>240</string>
+		<integer>240</integer>
 		<key>y</key>
 		<integer>-30</integer>
 	</dict>
-	<key>MenuPosi</key>
+	<key>Menu</key>
 	<dict>
+		<key>scale</key>
+		<real>0.6</real>
 		<key>x</key>
-		<real>290</real>
+		<integer>290</integer>
 		<key>y</key>
 		<integer>100</integer>
 	</dict>
-	<key>backGroudPosi</key>
+	<key>backGroud</key>
 	<dict>
+		<key>scale</key>
+		<integer>1</integer>
 		<key>x</key>
 		<integer>0</integer>
 		<key>y</key>

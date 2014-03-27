@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+#define HAND_CARD_DISTANCE 27//牌间距
+#define PLAYED_CARD_DISTANCE 13//牌数
+#define widthPart 30 //表示牌宽度的右半部分,用于计算所有牌的显示总宽度
 
 
 //the number of different dots
@@ -78,6 +81,9 @@ typedef enum {
     KINGTONG,     //四带一
     STRAIGHTFLUSH //同花顺
 } cardType;
+
+
+
 @interface Enumeration : CCLayer {
     
 }

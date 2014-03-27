@@ -70,4 +70,5 @@
 @property (retain) UITextField* userNameText;
 
 +(CCScene*)scene;
+-(void)playEffect;
 @end

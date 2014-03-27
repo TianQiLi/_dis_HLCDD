@@ -7,22 +7,41 @@
 //
 
 #import "Regular.h"
-
+#import "GameMainViewContorller.h"
+#import "SimpleAudioEngine.h"
+#import "PlistLoad.h"
 @implementation Regular
+@synthesize delegate;
+@synthesize controller;
 +(CCScene *) scene
 {
 	 	CCScene *scene = [CCScene node];
 	 	Regular *layer = [Regular node];
 	 	[scene addChild: layer];
-	
  	    return scene;
 }
+-(void)playEffect:(int)num
+{
+    if (num==1) {//单击
+        [[SimpleAudioEngine sharedEngine] playEffect:@"./audio/touch_card.wav" ];
+    }
+    else if(num==2)//左右滑动
+    {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"./audio/sound_swipe.wav" ];
+    
+    }
+  
 
+}
 -(id)init
 {
     if (self==[super init])
     {
         _navX = 55;
+        if ([[PlistLoad returnTypeName]isEqualToString:@"Type5"]) {
+            _navX =_navX +36;//40//按钮列表层
+        }
+        
         _navY = 36;
         _currentPage=1;
         _currentText=1;
@@ -31,50 +50,46 @@
     }
     return self;
 }
-
-
-//////////////////////////
-//init code
-
 -(void) initHomeView
 {
-    UIImage *tempImage=[UIImage imageNamed:@"u0_normal.png"];
-    _homeView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, tempImage.size.width, tempImage.size.height)];
+    NSString * str=[[PlistLoad loadPlist:nil] objectAtIndex:6];
+    UIImage *tempImage=[UIImage imageNamed:str];
+    _homeView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, tempImage.size.width/2, tempImage.size.height/2)];
     _homeView.image=tempImage;
     [[[CCDirector sharedDirector] openGLView] addSubview:_homeView];
+    [_homeView release];
+    
 }
--(void) initButtomBackground
-{
-    /*UIImage *tempImage=[UIImage imageNamed:@"u4_normal.png"];
-    _buttonBackground=[[UIImageView alloc] initWithFrame:CGRectMake(33, 30, tempImage.size.width, tempImage.size.height)];
-    _buttonBackground.image=tempImage;
-    [_homeView addSubview:_buttonBackground];
-    [_homeView bringSubviewToFront:_buttonBackground];*/
-}
-- (void)nextNav
+
+-(void)nextNav
 {
     _navX += 72;
 }
 -(void) initFirstButton
 {
-    UIImage *tempImage=[UIImage imageNamed:@"u10_normal_1.png"];
+    UIImage *tempImage=[UIImage imageNamed:@"abstractBtn.png"];
     _firstButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [_firstButton setImage:tempImage forState:UIControlStateNormal];
-    tempImage=[UIImage imageNamed:@"u8_normal_1.png"];
+    tempImage=[UIImage imageNamed:@"abstractBtned.png"];
     [_firstButton setImage:tempImage forState:UIControlStateHighlighted];
     [_firstButton setImage:tempImage forState:UIControlStateSelected];
+    
     _firstButton.frame=CGRectMake(_navX, _navY, tempImage.size.width/2, tempImage.size.height/2);
     [self nextNav];
     [_firstButton addTarget:self action:@selector(changeFirstPage:) forControlEvents:UIControlEventTouchUpInside];
     //    _navX += tempImage.size.width;
     [[[CCDirector sharedDirector] openGLView] addSubview:_firstButton];
+    
+   
+
 }
 -(void) initSecondButton
 {
-    UIImage *tempImage=[UIImage imageNamed:@"u10_normal_2.png"];
+    [pageC setNumberOfPages:1];
+    UIImage *tempImage=[UIImage imageNamed:@"gestureBtn.png"];
     _secondButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [_secondButton setImage:tempImage forState:UIControlStateNormal];
-    tempImage=[UIImage imageNamed:@"u8_normal_2.png"];
+    tempImage=[UIImage imageNamed:@"gestureBtned.png"];
     [_secondButton setImage:tempImage forState:UIControlStateHighlighted];
     [_secondButton setImage:tempImage forState:UIControlStateSelected];
     _secondButton.frame=CGRectMake(_navX, _navY, tempImage.size.width/2, tempImage.size.height/2);
@@ -83,12 +98,14 @@
     //    _navX += tempImage.size.width;
     [[[CCDirector sharedDirector] openGLView] addSubview:_secondButton];
 }
+
 -(void) initThirdButton
 {
-    UIImage *tempImage=[UIImage imageNamed:@"u10_normal_3.png"];
+    [pageC setNumberOfPages:3];
+    UIImage *tempImage=[UIImage imageNamed:@"regularBtn.png"];
     _thirdButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [_thirdButton setImage:tempImage forState:UIControlStateNormal];
-    tempImage=[UIImage imageNamed:@"u8_normal_3.png"];
+    tempImage=[UIImage imageNamed:@"regularBtned.png"];
     [_thirdButton setImage:tempImage forState:UIControlStateHighlighted];
     [_thirdButton setImage:tempImage forState:UIControlStateSelected];
     _thirdButton.frame=CGRectMake(_navX, _navY, tempImage.size.width/2, tempImage.size.height/2);
@@ -97,12 +114,14 @@
     //    _navX += tempImage.size.width;
     [[[CCDirector sharedDirector] openGLView] addSubview:_thirdButton];
 }
+
 -(void) initForthButton
 {
-    UIImage *tempImage=[UIImage imageNamed:@"u10_normal_4.png"];
+    [pageC setNumberOfPages:3];
+    UIImage *tempImage=[UIImage imageNamed:@"typeBtn.png"];
     _forthButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [_forthButton setImage:tempImage forState:UIControlStateNormal];
-    tempImage=[UIImage imageNamed:@"u8_normal_4.png"];
+    tempImage=[UIImage imageNamed:@"typeBtned.png"];
     [_forthButton setImage:tempImage forState:UIControlStateHighlighted];
     [_forthButton setImage:tempImage forState:UIControlStateSelected];
     _forthButton.frame=CGRectMake(_navX, _navY, tempImage.size.width/2, tempImage.size.height/2);
@@ -113,10 +132,11 @@
 }
 -(void) initFifthButton
 {
-    UIImage *tempImage=[UIImage imageNamed:@"u10_normal_5.png"];
+    [pageC setNumberOfPages:3];
+    UIImage *tempImage=[UIImage imageNamed:@"scoreBtn.png"];
     _fifthButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [_fifthButton setImage:tempImage forState:UIControlStateNormal];
-    tempImage=[UIImage imageNamed:@"u8_normal_5.png"];
+    tempImage=[UIImage imageNamed:@"scoreBtned.png"];
     [_fifthButton setImage:tempImage forState:UIControlStateHighlighted];
     [_fifthButton setImage:tempImage forState:UIControlStateSelected];
     _fifthButton.frame=CGRectMake(_navX, _navY, tempImage.size.width/2, tempImage.size.height/2);
@@ -127,8 +147,15 @@
 }
 - (void) initText
 {
-    UIImage *tempImage=[UIImage imageNamed:[NSString stringWithFormat:@"text_%d_%d",_currentPage,_currentText]];
-    _textViewCurrentPage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, tempImage.size.width/2, tempImage.size.height/2)];
+    
+    UIImage *tempImage=[UIImage imageNamed: @"abstract.png"];
+//    UIImage *tempImage=[UIImage imageNamed:[NSString stringWithFormat:@"text_%d_%d",_currentPage,_currentText]];
+    
+    float _x=0;
+    if ([[PlistLoad returnTypeName]isEqualToString:@"Type5"]) {
+        _x=_x+40;
+    }
+    _textViewCurrentPage=[[UIImageView alloc]initWithFrame:CGRectMake(_x, 0, tempImage.size.width/2, tempImage.size.height/2)];
     _textViewCurrentPage.image=tempImage;
     _firstButton.selected=YES;
     _secondButton.selected=NO;
@@ -141,10 +168,18 @@
     [oneFingerSwipRight setDirection:UISwipeGestureRecognizerDirectionRight];
     _text=[[UIView alloc]initWithFrame:CGRectMake(TEXT_POSITION_X, TEXT_POSITION_Y, tempImage.size.width/2, tempImage.size.height/2)];
     [_text addGestureRecognizer:oneFingerSwipLeft];
+    [oneFingerSwipLeft release];
     [_text addGestureRecognizer:oneFingerSwipRight];
+    [oneFingerSwipRight release];
     _text.userInteractionEnabled=YES;
     [_text addSubview:_textViewCurrentPage];
+    [_textViewCurrentPage release];
     [[[CCDirector sharedDirector] openGLView] addSubview:_text];
+    
+    pageC=[[UIPageControl alloc] initWithFrame:CGRectMake(190,288, 100, 50)];//添加pageC
+    [pageC setNumberOfPages:1];
+    [[[CCDirector sharedDirector] openGLView] addSubview:pageC];
+    [pageC release];
 }
 
 ///////////////////////////////////
@@ -153,6 +188,8 @@
 
 - (void)changeFirstPage:(id) sender
 {
+    
+    [pageC setNumberOfPages:1];
     _nextPage=1;
     _currentText=1;
     if(_nextPage==_currentPage)
@@ -160,11 +197,16 @@
         _nextPage=0;
         return;
     }
-    UIImage *tempImage=[UIImage imageNamed:[NSString stringWithFormat:@"text_%d_%d.png",_nextPage,_currentText]];
-    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, tempImage.size.width/2, tempImage.size.height/2)];
+//    UIImage *tempImage=[UIImage imageNamed:[NSString stringWithFormat:@"text_%d_%d.png",_nextPage,_currentText]];
+    
+    
+    UIImage *tempImage=[UIImage imageNamed:@"abstract.png"];
+    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(_textViewCurrentPage.frame.origin.x, 0, tempImage.size.width/2, tempImage.size.height/2)];
     _textViewNextPage.image=tempImage;
     [_textViewCurrentPage removeFromSuperview];
     [_text addSubview:_textViewNextPage];
+    [_textViewNextPage release];
+    
     _textViewCurrentPage=_textViewNextPage;
     _currentPage=_nextPage;
     _firstButton.selected=YES;
@@ -173,10 +215,12 @@
     _forthButton.selected=NO;
     _fifthButton.selected=NO;
     _nextPage=0;
+    [self playEffect:1];//音效
     return;
 }
 - (void)changeSecondPage:(id) sender
 {
+    [pageC setNumberOfPages:1];
     _nextPage=2;
     _currentText=1;
     if(_nextPage==_currentPage)
@@ -184,11 +228,14 @@
         _nextPage=0;
         return;
     }
-    UIImage *tempImage=[UIImage imageNamed:[NSString stringWithFormat:@"text_%d_%d.png",_nextPage,_currentText]];
-    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, tempImage.size.width/2, tempImage.size.height/2)];
+    UIImage * tempImage=[UIImage imageNamed:@"gesture.png"];
+//    UIImage *tempImage=[UIImage imageNamed:[NSString stringWithFormat:@"text_%d_%d.png",_nextPage,_currentText]];
+    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(_textViewCurrentPage.frame.origin.x, 0, tempImage.size.width/2, tempImage.size.height/2)];
     _textViewNextPage.image=tempImage;
     [_textViewCurrentPage removeFromSuperview];
     [_text addSubview:_textViewNextPage];
+    [_textViewNextPage release];
+    
     _textViewCurrentPage=_textViewNextPage;
     _currentPage=_nextPage;
     _firstButton.selected=NO;
@@ -197,11 +244,15 @@
     _forthButton.selected=NO;
     _fifthButton.selected=NO;
     _nextPage=0;
+    
+      [self playEffect:1];//音效
     return;
 }
-- (void)changeThirdPage:(id) sender
+- (void)changeThirdPage:(id) sender//规则
 {
-    _nextPage=3;
+    [pageC setNumberOfPages:4];//3
+    [pageC setCurrentPage:0];
+    _nextPage=3;//3
     _currentText=1;
     if(_nextPage==_currentPage)
     {
@@ -209,10 +260,12 @@
         return;
     }
     UIImage *tempImage=[UIImage imageNamed:[NSString stringWithFormat:@"text_%d_%d.png",_nextPage,_currentText]];
-    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, tempImage.size.width/2, tempImage.size.height/2)];
+    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(_textViewCurrentPage.frame.origin.x, 0, tempImage.size.width/2, tempImage.size.height/2)];
     _textViewNextPage.image=tempImage;
     [_textViewCurrentPage removeFromSuperview];
     [_text addSubview:_textViewNextPage];
+    [_textViewNextPage release];
+    
     _textViewCurrentPage=_textViewNextPage;
     _currentPage=_nextPage;
     _firstButton.selected=NO;
@@ -221,10 +274,13 @@
     _forthButton.selected=NO;
     _fifthButton.selected=NO;
     _nextPage=0;
+     [self playEffect:1];//音效
     return;
 }
 - (void)changeForthPage:(id) sender
 {
+    [pageC setNumberOfPages:3];
+    [pageC setCurrentPage:0];
     _nextPage=4;
     _currentText=1;
     if(_nextPage==_currentPage)
@@ -233,10 +289,12 @@
         return;
     }
     UIImage *tempImage=[UIImage imageNamed:[NSString stringWithFormat:@"text_%d_%d.png",_nextPage,_currentText]];
-    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, tempImage.size.width/2, tempImage.size.height/2)];
+    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(_textViewCurrentPage.frame.origin.x, 0, tempImage.size.width/2, tempImage.size.height/2)];
     _textViewNextPage.image=tempImage;
     [_textViewCurrentPage removeFromSuperview];
     [_text addSubview:_textViewNextPage];
+    [_textViewNextPage release];
+    
     _textViewCurrentPage=_textViewNextPage;
     _currentPage=_nextPage;
     _firstButton.selected=NO;
@@ -245,10 +303,14 @@
     _forthButton.selected=YES;
     _fifthButton.selected=NO;
     _nextPage=0;
+    [self playEffect:1];//音效
     return;
 }
 - (void)changeFifthPage:(id) sender
 {
+    
+    [pageC setNumberOfPages:3];
+    [pageC setCurrentPage:0];
     _nextPage=5;
     _currentText=1;
     if(_nextPage==_currentPage)
@@ -256,11 +318,14 @@
         _nextPage=0;
         return;
     }
+ 
     UIImage *tempImage=[UIImage imageNamed:[NSString stringWithFormat:@"text_%d_%d.png",_nextPage,_currentText]];
-    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, tempImage.size.width/2, tempImage.size.height/2)];
+    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(_textViewCurrentPage.frame.origin.x, 0, tempImage.size.width/2, tempImage.size.height/2)];
     _textViewNextPage.image=tempImage;
     [_textViewCurrentPage removeFromSuperview];
     [_text addSubview:_textViewNextPage];
+    [_textViewNextPage release];
+    
     _textViewCurrentPage=_textViewNextPage;
     _currentPage=_nextPage;
     _firstButton.selected=NO;
@@ -269,10 +334,13 @@
     _forthButton.selected=NO;
     _fifthButton.selected=YES;
     _nextPage=0;
+     [self playEffect:1];//音效
     return;
 }
 - (void)oneFingerSwipLeft:(UISwipeGestureRecognizer *)recognizer
 {
+    
+    printf("left.cu=%d",_currentPage);
     switch (_currentPage) {
         case 1:
             if(_currentText>=TEXT_COUNT_1)
@@ -297,29 +365,41 @@
         default:
             break;
     }
+//     printf("p==%d",_currentText);
+    [pageC setCurrentPage:_currentText];
+
     UIImage *tempImage=[UIImage imageNamed:[NSString stringWithFormat:@"text_%d_%d.png",_currentPage,_currentText+1]];
-    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, tempImage.size.width/2, tempImage.size.height/2)];
+    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(_textViewCurrentPage.frame.origin.x, 0, tempImage.size.width/2, tempImage.size.height/2)];//x=0
     _textViewNextPage.image=tempImage;
     [_textViewCurrentPage removeFromSuperview];
     [_text addSubview:_textViewNextPage];
     _textViewCurrentPage=_textViewNextPage;
     _currentText++;
+   [self playEffect:2];//音效
+ 
     return;
 }
 - (void)oneFingerSwipRight:(UISwipeGestureRecognizer *)recognizer
 {
-    if(_currentText==1) return;
+    
+    if(_currentText==1) return ;
+   
     UIImage *tempImage=[UIImage imageNamed:[NSString stringWithFormat:@"text_%d_%d.png",_currentPage,_currentText-1]];
-    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, tempImage.size.width/2, tempImage.size.height/2)];
+    _textViewNextPage=[[UIImageView alloc]initWithFrame:CGRectMake(_textViewCurrentPage.frame.origin.x, 0, tempImage.size.width/2, tempImage.size.height/2)];
     _textViewNextPage.image=tempImage;
     _textViewNextPage.bounds=CGRectMake(-10, -10, tempImage.size.width/2, tempImage.size.height/2) ;
     [_textViewCurrentPage removeFromSuperview];
     [_text addSubview:_textViewNextPage];
     _textViewCurrentPage=_textViewNextPage;
     _currentText--;
-    return;
-}
+     [pageC setCurrentPage:_currentText-1];
+//    printf("page==%d",_currentText);
+ 
 
+   [self playEffect:2];//音效
+    
+    return ;
+}
 
 /////////////////////////////////////
 //initial code
@@ -340,8 +420,24 @@
     
     _buttonBackground.hidden = YES;
     _homeView.hidden = YES;
-}
+    pageC.hidden=YES;
+    if (![self.parent isKindOfClass:[GameMainViewContorller class]]) {//不是启动页面
+ 
+        printf("不是启动页面");
+        [self.delegate setMainMenu];
+        
+    
+    }
+    else//是启动页面
+    {
 
+        printf("启动页面");
+        [self.delegate setEnableYes];
+    }
+    [self playEffect:1];//音效
+
+    
+}
 -(void)drawTextView
 {
     NSString * about = [NSString stringWithFormat:@"return.png"];
@@ -349,21 +445,34 @@
     btn_regular=[UIButton buttonWithType:UIButtonTypeCustom];
 
     [btn_regular setImage:about_1 forState:UIControlStateNormal];
-    [btn_regular setFrame:CGRectMake(0, 0, 60, 35)];
+    [btn_regular setFrame:CGRectMake(0, 0, 60, 40)];
 
     [btn_regular addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
     
     //////////////////////////////
 	[self initHomeView];
-    [self initButtomBackground];
+ 
     [self initFirstButton];
     [self initSecondButton];
     [self initThirdButton];
     [self initForthButton];
     [self initFifthButton];
+ 
     [self initText];
     
     [[[CCDirector sharedDirector] openGLView] addSubview:btn_regular];
+}
+
+-(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    NSLog(@"规则界面被点击了");
+    return NO;//yes
+}
+-(void)dealloc
+{
+    printf("guize dealloc");
+    [super dealloc];
+
 }
 
 @end

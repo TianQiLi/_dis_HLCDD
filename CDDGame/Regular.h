@@ -8,19 +8,30 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+ 
 
 #define TEXT_COUNT_1 1
 #define TEXT_COUNT_2 1
-#define TEXT_COUNT_3 2
-#define TEXT_COUNT_4 2
-#define TEXT_COUNT_5 1
+#define TEXT_COUNT_3 4//3
+#define TEXT_COUNT_4 3
+#define TEXT_COUNT_5 3
 #define TEXT_POSITION_X 33
 #define TEXT_POSITION_Y 80
 
-@interface Regular : CCLayer {
+
+@protocol EXParentDelegate <NSObject>
+@required
+-(void)setMainMenu;
+-(void) setEnableYes;
+
+@end
+
+@interface Regular : CCLayer<EXParentDelegate> {
     UIButton * btn_regular;
     
     ////////////////////////////
+    
+    int start_x;
     int _currentPage;
     int _currentText;
     int _nextPage;
@@ -37,11 +48,18 @@
     
     UIImageView *_buttonBackground;
     UIImageView *_homeView;
+    UIPageControl *pageC;
+    int controller;
+    
     int _navX;
     int _navY;
     
 }
-+(CCScene * )scene;
+@property int controller;
+@property(nonatomic,retain) id<EXParentDelegate>delegate;
++(CCScene * )scene;    
 -(void)drawTextView;
+-(void)playEffect:(int)num;
+
 
 @end

@@ -18,37 +18,27 @@
 #import "SimpleAudioEngine.h"
 @implementation RootViewController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
- - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-	// Custom initialization
-	}
-	return self;
- }
- */
-
-/*
- // Implement loadView to create a view hierarchy programmatically, without using a nib.
- - (void)loadView {
- }
- */
-
-
- // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-//-(void)viewDidLoad {
-//	[super viewDidLoad];
-//    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"不能说的秘密.mp3" loop:0];
-// }
  
 
 - (NSUInteger) supportedInterfaceOrientations
 {
-//    return UIInterfaceOrientationMaskLandscapeLeft;
-    return UIInterfaceOrientationLandscapeLeft;
+    return UIInterfaceOrientationMaskLandscapeLeft;
+//    return UIInterfaceOrientationLandscapeLeft;
 }
-
-
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    
+    return UIInterfaceOrientationLandscapeRight;//UIInterfaceOrientationLandscapeRight
+}
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    
+    return UIInterfaceOrientationMaskLandscape;
+}
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -94,6 +84,7 @@
 	// return YES for the supported orientations
 	
 	return ( UIInterfaceOrientationIsLandscape( interfaceOrientation ) );
+   
 	
 #else
 #error Unknown value in GAME_AUTOROTATION
@@ -102,7 +93,7 @@
 	
 	
 	// Shold not happen
-	return NO;
+	return NO;//NO
 }
 
 //
@@ -144,6 +135,10 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
+
+
+
+
 
 - (void)viewDidUnload {
     //[super viewDidUnload];

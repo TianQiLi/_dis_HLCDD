@@ -21,6 +21,7 @@
     NSMutableArray*        cardsOnHand;
     NSMutableArray*        selectCards;
     NSMutableArray*        lastCards;
+    NSMutableArray*        showedAllCards;
     
     int             onHandCardsNum;
     int             selectCardsNum;
@@ -66,6 +67,8 @@
 @property (retain)    NSMutableArray*   cardsOnHand;
 @property (retain)    NSMutableArray*   selectCards;
 @property (retain)    NSMutableArray*   lastCards;
+@property (retain)    NSMutableArray* showedAllCards;
+
 /****************************************/
 @property (retain)NSMutableArray * cardList;
 @property (readwrite)Boolean needSquare3;

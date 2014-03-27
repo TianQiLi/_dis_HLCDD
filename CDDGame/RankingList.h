@@ -81,6 +81,4 @@
 @property (retain)UIScrollView * scrollViewRanking;
 
 
-
-
 @end

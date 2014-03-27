@@ -21,6 +21,7 @@
 @synthesize selectCards;
 @synthesize cardsOnHand;
 @synthesize lastCards;
+@synthesize showedAllCards;
 @synthesize tScore;
 @synthesize scoreGet;
 @synthesize currentScore;
@@ -207,6 +208,23 @@
 //            [cardsOnHand removeObject:[selectCards objectAtIndex:i]];
     }
     self.onHandCardsNum = cardsOnHand.count;
+    
+    if (showedAllCards == nil) {
+        showedAllCards = [[NSMutableArray alloc]
+                          init];
+    }
+    for (int i = 0 ; i < cardList.count ; i ++) {
+        Card *   cardTemp = [self.cardList objectAtIndex:i];
+        [self.showedAllCards addObject:cardTemp];
+        
+    }
+    
+    /*Test*/
+    for (int i = 0; i < showedAllCards.count; i ++ ) {
+        Card *   cardTemp = [self.showedAllCards objectAtIndex:i];
+        NSLog(@"Test :  %d %d", cardTemp.cardNum,
+              cardTemp.suit);
+    }
         
 //        [self.selectCards removeAllObjects]; 
 //        selectCards = [[NSMutableArray alloc]init];

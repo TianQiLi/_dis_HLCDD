@@ -13,6 +13,7 @@
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
 	RootViewController	*viewController;
+    NSThread * sound;
 }
 
 @property (nonatomic, retain) UIWindow *window;

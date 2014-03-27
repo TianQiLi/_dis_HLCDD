@@ -43,7 +43,7 @@
 
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<%@ = %08X | center = (%.2f,%.2f,%.2f)>", [self class], self, centerX_, centerY_, centerZ_];
+	return [NSString stringWithFormat:@"<%@ = %8@ | center = (%.2f,%.2f,%.2f)>", [self class], self, centerX_, centerY_, centerZ_];
 }
 
 

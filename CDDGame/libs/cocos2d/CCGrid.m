@@ -125,7 +125,7 @@
 }
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<%@ = %08X | Dimensions = %ix%i>", [self class], self, gridSize_.x, gridSize_.y];
+	return [NSString stringWithFormat:@"<%@ = %8@ | Dimensions = %ix%i>", [self class], self, gridSize_.x, gridSize_.y];
 }
 
 - (void) dealloc

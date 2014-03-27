@@ -14,7 +14,7 @@
     
 }
 
-+ (NSMutableArray *) sortCards:(NSMutableArray *)_cards;
++ (void) sortCards:(NSMutableArray *)_cards;
 + (cardType) getCardType: (NSMutableArray*) selectedCard;
 + (Boolean) isEqual:(Card *)_card;
 + (Boolean) compareCards:(NSMutableArray*) selectedCards _tempCard:(NSMutableArray*) tempCards;

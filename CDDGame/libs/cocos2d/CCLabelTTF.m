@@ -136,6 +136,6 @@
 {
 	// XXX: string_, fontName_ can't be displayed here, since they might be already released
 
-	return [NSString stringWithFormat:@"<%@ = %08X | FontSize = %.1f>", [self class], self, fontSize_];
+	return [NSString stringWithFormat:@"<%@ = %8@ | FontSize = %.1f>", [self class], self, fontSize_];
 }
 @end

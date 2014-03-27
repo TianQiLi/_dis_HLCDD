@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-
+#import "protocal.h"
 //<CCLabelProtocol,CCRGBAProtocol>
 
-@interface SetAudioLayer : CCLayer<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface SetAudioLayer : CCLayer<UINavigationControllerDelegate,UIImagePickerControllerDelegate,RectSwitchDelegate>
 {
     UIView * view;//作为容器
 //    CCLayer * layerItem;
@@ -29,12 +29,13 @@
 @property (retain)NSString*  musicName_selected;
 @property (retain) UISlider*    musicVolumn;
 @property (retain) UISlider*    effectVolumn;
+@property (retain) id<RectSwitchDelegate>delegate;
+
 -(void)drawAudioItem;
--(void)drawMusicList;
--(void)clickDrop:(id)sender;
+
 -(void) changeMusicVol:(id)sender;
 -(void) changeEffectVol:(id)sender;
 -(void)clickSure_music:(id)sender;
 -(void)clickReset_music:(id)sender;
- 
+ -(void)playEffect;
 @end

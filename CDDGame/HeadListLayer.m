@@ -7,9 +7,13 @@
 //
 
 #import "HeadListLayer.h"
-
-
+#import "SimpleAudioEngine.h"
+#import "PlistLoad.h"
+#import "PositionGetter.h"
 @implementation HeadListLayer
+@synthesize  delegate;
+
+#define _width 480
 
 -(id)init
 {
@@ -18,8 +22,10 @@
       //设置可触摸
        self.isTouchEnabled=YES;	
         //背景图片
+ 
+        NSString * str=[[PlistLoad loadPlist:nil] objectAtIndex:3];
         
-        CCSprite * bg=[[CCSprite alloc] initWithFile:@"head_bg.png"];// 
+        CCSprite * bg=[[CCSprite alloc] initWithFile:str];//
 //        CCSprite * bg=[[CCSprite alloc] init];//创建无图的精灵
         bg.anchorPoint=CGPointZero;
 //         bg.contentSize=CGSizeMake(480.0f, 320.0f);
@@ -28,7 +34,7 @@
         [bg release];
 
         //绘制容器
-        viewHead=[[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 480.0f, 320.0f)];
+        viewHead=[[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, _width, 320.0f)] ;
         viewHead.hidden=NO;      
         [[[CCDirector sharedDirector] openGLView] addSubview:viewHead];//添加视图的常用方法
 
@@ -42,32 +48,35 @@
 }
 -(void)drawHead
 {
-    //滚动试图
-    scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 480.0f, 225.0f)];//设置可视化界面大小
-    scrollView.pagingEnabled=YES;
-    scrollView.center=CGPointMake(240.0,168.0);
     
-    scrollView.contentSize=CGSizeMake(480, 225);//真实大小
+    //滚动试图
+    scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, _width, 225.0f)];//设置可视化界面大小
+    scrollView.pagingEnabled=YES;
+    scrollView.center=CGPointMake(scrollView.frame.size.width/2,168.0);
+    
+    scrollView.contentSize=CGSizeMake(scrollView.frame.size.width, 225);//真实大小
     scrollView.alwaysBounceVertical=YES;//支持上下滑动
     scrollView.hidden=NO;
     [viewHead addSubview:scrollView];
     
     //确定按钮
     surebtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    [surebtn setFrame:CGRectMake(360, 280, 60, 40)];
-     [surebtn setImage:[UIImage imageNamed:@"sureButton.png"] forState:UIControlStateNormal];
+    [surebtn setFrame:CGRectMake(420, 280, 60, 40)];
+    
+    [surebtn setImage:[UIImage imageNamed:@"sureButton.png"] forState:UIControlStateNormal];
     [surebtn addTarget:self action:@selector(clickSureBtn:) forControlEvents:UIControlEventTouchUpInside];
     [viewHead addSubview:surebtn];
     
      //显示头像
     headImgArry=[NSArray  arrayWithObjects:@"./head/1.png",@"./head/2.png",@"./head/3.png",@"./head/4.png",@"./head/5.png",@"./head/6.png",@"./head/7.png",@"./head/8.png",@"./head/9.png", nil  ];
-//    headImgArry=[NSArray arrayWithObjects:@"bird.png", @"cat.png", @"dog.png", @"turtle.png",@"bird.png", @"cat.png", @"dog.png", @"turtle.png",@"bird.png", @"cat.png", @"dog.png", @"turtle.png",@"bird.png", @"cat.png", @"dog.png", @"turtle.png",@"bird.png", @"cat.png", @"dog.png", @"turtle.png", nil];   
-//    for (int i=0; i<10; ++i)//头像循环存入数组
-//    {int index=0;
-//        NSString * str=[[NSString alloc]initWithFormat:@"%d.png",index];
-//        [headImgArry  addObject:str ];
-//        [str release];
-//    }
+ 
+    
+    float _x=150;
+    NSString * strtype=[PlistLoad returnTypeName];
+    NSLog(@"ss=%@",strtype);
+    if ([strtype isEqualToString:@"Type5"]) {
+        _x=190;
+    }
     for (int i=0; i<headImgArry.count; ++i) 
     {  
         //循环生成头像按钮
@@ -79,20 +88,15 @@
         //判断分行
         if (i<=2) 
         {
-            [headBtn setFrame:CGRectMake (150.0f+i*60.0, 15.0f, 60.0f, 70.0f)];//横向增量是60.0 纵向增量是70.0
+            [headBtn setFrame: CGRectMake (_x+i*60.0, 15.0f, 60.0f, 70.0f)];//横向增量是60.0 纵向增量是70.0
         }
         else if (i<=5) {
-            [headBtn setFrame:CGRectMake (150.0f+(i-3)*60.0, 85.0f, 60.0f, 70.0f)];
+            [headBtn setFrame: CGRectMake (_x+(i-3)*60.0, 85.0f, 60.0f, 70.0f)];
         }
         else if (i<=8) {
-            [headBtn setFrame:CGRectMake (150.0f+(i-6)*60.0, 155.0f, 60.0f, 70.0f)];
+            [headBtn setFrame: CGRectMake (_x+(i-6)*60.0, 155.0f, 60.0f, 70.0f)];
         }
-//        else if (i>11&&i<=15) {
-//            [headBtn setFrame:CGRectMake (50.0f+(i-12)*50.0, 200.0f, 40.0f, 40.0f)];
-//        }
-//        else if (i>15) {
-//            [headBtn setFrame:CGRectMake (50.0f+(i-16)*50.0, 250.0f, 40.0f, 40.0f)];
-//        }
+ 
         
         [headBtn setTitle:str forState:UIControlStateNormal];
         [headBtn setTag:i];
@@ -133,10 +137,9 @@
     [btn1.layer setBorderWidth:2.0];
     [btn1.layer setBorderColor:colorref];
 
-
-     
     NSLog(@"select_index=%d",select_index);
     NSLog(@"select_title=%@",select_img);
+    [self playEffect];
 
 }
 -(void)clickSureBtn:(id)sender
@@ -201,10 +204,13 @@
 //        [self.parent updateHead:select_img ];//强制调用父类
 
     }
-    [self.parent updateHead:select_img ];//强制调用父类
-
+    [self playEffect];
+//    [self.parent updateHead:select_img ];//强制调用父类
+    [self.delegate updateHead:select_img];
      [viewHead setHidden:YES];
-     [self.parent removeChildByTag:21 cleanup:YES];
+ 
+ 
+    [self removeFromParentAndCleanup:YES];
 }
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
@@ -215,6 +221,11 @@
 {
     [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
     [super registerWithTouchDispatcher];
+}
+-(void)playEffect
+{
+    [[SimpleAudioEngine sharedEngine] playEffect:@"./audio/sound_tap.wav"];
+    
 }
 
 @end

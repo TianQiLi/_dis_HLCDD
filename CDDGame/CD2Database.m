@@ -56,28 +56,6 @@
     }
 }
 
-////创建分数排名的表
-//-(void) createScorePlace
-//{
-//    char * errorMsg;
-//    NSString * createSqlite = [NSString stringWithFormat:@"create table if not exists %@ (name text,score integer)",scoreRanking];
-//    if (sqlite3_exec(database, [createSqlite UTF8String], NULL, NULL, &errorMsg) == SQLITE_OK) {
-//        NSLog(@"create scoreplace ok.");
-//    }
-//}
-
-////更新分数
-//-(void) insertScoreName:(NSString *)name score:(int)x
-//{
-//    char * errorMsg;
-//    NSString * sqlite = [NSString stringWithFormat:@"INSERT OR ROLLBACK INTO '%@'('%@','%@') VALUES ('%@','%d')",scoreRanking,@"name",@"score",name,x];
-//    if (sqlite3_exec(database, [sqlite UTF8String], NULL, NULL, &errorMsg) == SQLITE_OK) {
-//        NSLog(@"insert score ok.");
-//    }else{
-//        NSLog(@"insert score faild.");
-//    }
-//}
-
 //插入数据，如果有重复，则不插入数据
 - (void) insertUserWithName:(NSString*) name
 {
@@ -215,29 +193,6 @@
     }
 }
 
-//- (NSString *) selectUser1
-//{
-//    NSString * selectSqlite = [NSString stringWithFormat:@"select name,score from %@ where use='%d'",userTableName,1];
-//    sqlite3_stmt * statement;
-//    if (sqlite3_prepare(database, [selectSqlite UTF8String], -1, &statement, nil) == SQLITE_OK) {
-//        NSLog(@"select is ok.");
-//    }else{
-//        NSLog(@"select failed.");
-//    }
-//    if (sqlite3_step(statement) == SQLITE_ROW) {
-//        NSLog(@"row>>,name %@",userName1);
-//        NSString * userName = [[NSString alloc] initWithCString:(char *)sqlite3_column_text(statement, 0) encoding:NSUTF8StringEncoding];
-//        userName1 = userName;
-//        NSLog(@"row>>,name %@",userName1);
-//        score = sqlite3_column_double(statement, 1);
-//        NSLog(@"row>>,score %d",score);
-//        [userName release];
-//    }
-//    return nil;
-//}
-
-
-
 //选择上次使用的用户名
 - (NSString *) selectLastName
 {
@@ -263,7 +218,7 @@
         backGroundMusic = sqlite3_column_double(statement, 6);
         headPortrait = sqlite3_column_double(statement, 7);
         score = sqlite3_column_double(statement, 8);
-        NSLog(@"volume score =%f %d,",volume, score);
+        NSLog(@"volume score =%f %ld,",volume, score);
         userName = [[NSString alloc] initWithCString:(char *)sqlite3_column_text(statement, 9) encoding:NSUTF8StringEncoding];
         computer1 = userName;
         userName = [[NSString alloc] initWithCString:(char *)sqlite3_column_text(statement, 10) encoding:NSUTF8StringEncoding];
